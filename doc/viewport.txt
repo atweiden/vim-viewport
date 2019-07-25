@@ -1,10 +1,8 @@
-*viewport.txt*	View buffer of selected part of a target buffer		Last change: 27 X 2012
+*ViewPort*  View buffer of selected part of a target buffer
 
 
-				     View Port
-				by Marcin Szamotulski
-			    mszamot [AT] gmail [DOT] com
-			----------------------------------------
+                           View Port
+            ----------------------------------------
 
 PURPOSE ~
 
@@ -20,28 +18,33 @@ the source as you wish, just don't delete the starting line and ending line of
 the view port, since you will remove the marks.  You can also move the marks
 to new position and update the view port.
 
-View port works line wise, rathen just from mark to mark.  You can request to
-make it better, and I will implement it.
+! IMPORTANT !
+THIS PLUGIN DISABLES `t` and `y` AS MARKS BY DEFAULT
+YOU CAN USE OTHER LETTERS WITH |g:viewport_start_mark| and |g:viewport_end_mark|
 
-INTERFACE							     *viewport*
+USAGE                                    *viewport*
 
-								    *:Vpedit*
-:[range]Vpedit [s_mark] [e_mark]
+In visual mode select a region and then `<leader>nr` to will execute over it
+|ViewPortSplit| command (see below)
+    To define custom mappings for |ViewPortSplit| use `<Plug>VPsplit`
+
+    To create custom mapping use:
+        `vnoremap [mapping] :<line1>,<line2>call ViewPort("[cmd]")`
+
+                                    *:ViewPort*
+:[range]ViewPort [cmd]
     Make view port on the [range] (the default is the current line).  The new
-    buffer is opened with |:edit| command. [s_mark] is the mark to use for the
-    starting position, and [e_mark] is the mark to use for the end position. 
-    The default is t for s_mark and y for e_mark.
-								    *:Vpsplit*
-:[range]Vpsplit [s_mark] [e_mark]
+    buffer is opened with [cmd] command.
+
+                                    *:ViewPortSplit*
+:[range]ViewPortSplit
     Open view port in a new split window.
-								    *:Vpvsplit*
-:[range]Vpsplit [s_mark] [e_mark]
-    Open view port in a new vertical split window.
+        If `g:viewport_split_vertical=1` then window will open vertically
 
 
 In the view port buffer:
 
-								    *viewport-:write*
+                                    *viewport-:write*
 :w[rite][!]
     Install the changes in to the source buffer.  If the original buffer in
     the range the view port was modified an error message is printed, unless
@@ -50,10 +53,22 @@ In the view port buffer:
     takes care about the 'modified' option.  If the view port is written
     without errors 'modififed' is reset.
 
-								    *:Update*
+                                    *:Update*
 :Update
     Loads what is in the source file into the view port buffer.
 
+VARIABLES
+
+g:viewport_split_vertical
+    If set to 1, `ViewPortSplit` will split window vertically (default: 0)
+
+g:viewport_start_mark
+    Set letter to use as region starting position (default 't')
+
+g:viewport_start_mark
+    Set letter to use as region ending position (default 'y')
 
 LICENSE ~
 Vim license, :help license
+
+vim: ft=help
