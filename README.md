@@ -1,6 +1,6 @@
 # ViewPort
 
-Fork of [ViewPort](https://www.vim.org/scripts/script.php?script_id=4296) by [Marcin Szamotulski](https://www.vim.org/account/profile.php?user_id=18896)
+Slightly improved and modernized version of _[ViewPort](https://www.vim.org/scripts/script.php?script_id=4296) by [Marcin Szamotulski](https://www.vim.org/account/profile.php?user_id=18896)_
 
 ---
 
