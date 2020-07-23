@@ -1,13 +1,68 @@
-# ViewPort
+vim-viewport
+============
 
-Slightly improved and modernized version of _[ViewPort](https://www.vim.org/scripts/script.php?script_id=4296) by [Marcin Szamotulski](https://www.vim.org/account/profile.php?user_id=18896)_
+Narrow region for Vim.
 
----
+Config
+------
 
-For usage refer to `:h ViewPort` ([see on Github](https://github.com/Jorengarenar/ViewPort/blob/master/doc/viewport.txt))
+vim-viewport does not create any keymaps by default.
 
----
+```vim
+" open visually selected region in horizontal split
+vmap <leader>nr <Plug>ViewPortSplit
 
-Alternatives
-  * [chrisbra/NrrwRgn](https://github.com/chrisbra/nrrwrgn)
-  * [kana/vim-narrow](https://github.com/kana/vim-narrow)
+" open visually selected region in vertical split
+vmap <leader>nr <Plug>ViewPortVSplit
+
+" open visually selected region in new tab
+vmap <leader>nr <Plug>ViewPortTabNew
+```
+
+vim-viewport reserves two Vim marks for its own usage: one for the
+starting point and one for the ending point of the narrowed region. These
+marks must necessarily be sacrificed to vim-viewport. They can be
+configured as follows:
+
+```vim
+" configure mark used to denote start of narrowed region (defaults to t)
+let g:viewport_start_mark = 't'
+
+" configure mark used to denote end of narrowed region (defaults to y)
+let g:viewport_end_mark = 'y'
+```
+
+Installation
+------------
+
+```bash
+# vim 8 package
+git clone https://github.com/atweiden/vim-viewport \
+  "$HOME/.vim/pack/plugins/start/vim-viewport"
+
+# pathogen
+git clone https://github.com/atweiden/vim-viewport \
+  "$HOME/.vim/bundle/vim-viewport"
+```
+
+```vim
+" plug
+Plug 'atweiden/vim-viewport'
+
+" vundle
+Plugin 'atweiden/vim-viewport'
+
+" dein.vim
+call dein#add('atweiden/vim-viewport')
+
+" minpac
+call minpac#add('atweiden/vim-viewport')
+```
+
+License
+-------
+
+[Vim][LICENSE]
+
+
+[LICENSE]: LICENSE

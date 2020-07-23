@@ -1,74 +1,165 @@
-*ViewPort*  View buffer of selected part of a target buffer
+*vim-viewport.txt* Narrow region for Vim
+*vim-viewport*
 
+==============================================================================
+#                                                                            #
+#                               vim-viewport                                 #
+#                                                                            #
+==============================================================================
+CONTENTS                                                   *viewport-contents*
 
-                           View Port
-            ----------------------------------------
+  1. Intro........................................|viewport-intro|
+  2. Install......................................|viewport-install|
+  3. Commands.....................................|viewport-commands|
+  4. Mappings.....................................|viewport-mappings|
+  5. Settings.....................................|viewport-settings|
+  6. Credits......................................|viewport-credits|
 
-PURPOSE ~
+==============================================================================
+INTRO                                                         *viewport-intro*
 
-Some times I want to make diffs of parts of files using the vimdiff.  You
-simply cannot mark parts of file to be in vimdiff.  Here this plugin comes
-handy.  It makes a view port on a range of lines: it copies range of lines to
-a new buffer, sets two marks in the source buffer, which mark the starting and
-ending positions.  When you save the view port with the vim |:write| command,
-the modified data is installed back into the source file.  If the source file
-was changed (in the range where view port is opened) and you try to save it an
-error message is printed, you can use :write! to overwrite.  You can modify
-the source as you wish, just don't delete the starting line and ending line of
-the view port, since you will remove the marks.  You can also move the marks
-to new position and update the view port.
+Narrow region for Vim.
 
-! IMPORTANT !
-THIS PLUGIN DISABLES `t` and `y` AS MARKS BY DEFAULT
-YOU CAN USE OTHER LETTERS WITH |g:viewport_start_mark| and |g:viewport_end_mark|
+Makes a viewport on range of lines. Copies range of lines to new
+buffer. Sets two marks in the source buffer, one marks the starting
+position and the other the ending position. Writes modified viewport
+buffer contents back into the source file with the vim |:write|
+command. If source file was changed (in line range from which viewport
+was derived), an error message is printed: use :write! to override this.
 
-USAGE                                    *viewport*
+Source file can be modified outside of viewport, but be careful not to
+delete the starting or ending line of the viewport, as this will remove
+viewport's marks. Viewport's marks can be moved to new positions and
+the viewport updated.
 
-In visual mode select a region and then `<leader>nr` to will execute over it
-|ViewPortSplit| command (see below)
-    To define custom mappings for |ViewPortSplit| use `<Plug>VPsplit`
+vim-viewport disables `t` and `y` as marks by default. You can use other
+letters with |g:viewport_start_mark| and |g:viewport_end_mark|.
 
-    To create custom mapping use:
-        `vnoremap [mapping] :<line1>,<line2>call ViewPort("[cmd]")`
+==============================================================================
+INSTALL                                                     *viewport-install*
 
-                                    *:ViewPort*
+Standard installation:
+
+*  Vim 8 |packages| >
+
+    git clone https://github.com/atweiden/vim-viewport \
+      ~/.vim/pack/plugins/start/vim-viewport
+<
+*  Pathogen >
+
+    git clone https://github.com/atweiden/vim-viewport \
+      ~/.vim/bundle/vim-viewport
+<
+*  Plug >
+
+    Plug 'atweiden/vim-viewport'
+<
+*  Vundle >
+
+    Plugin 'atweiden/vim-viewport'
+<
+*  dein.vim >
+
+    call dein#add('atweiden/vim-viewport')
+<
+*  minpac >
+
+    call minpac#add('atweiden/vim-viewport')
+<
+
+==============================================================================
+COMMANDS                                                   *viewport-commands*
+
+                                                                   *:ViewPort*
 :[range]ViewPort [cmd]
-    Make view port on the [range] (the default is the current line).  The new
-    buffer is opened with [cmd] command.
 
-                                    *:ViewPortSplit*
+    Make viewport from lines in [range] (defaults to current line). Open
+    new viewport buffer with [cmd] command.
+
+                                                              *:ViewPortSplit*
 :[range]ViewPortSplit
-    Open view port in a new split window.
-        If `g:viewport_split_vertical=1` then window will open vertically
 
+    Make viewport from lines in [range] (defaults to current line). Open
+    viewport buffer in new horizontal split.
 
-In the view port buffer:
+                                                             *:ViewPortVSplit*
+:[range]ViewPortVSplit
 
-                                    *viewport-:write*
+    Make viewport from lines in [range] (defaults to current line). Open
+    viewport buffer in new vertical split.
+
+                                                             *:ViewPortTabNew*
+:[range]ViewPortTabNew
+
+    Make viewport from lines in [range] (defaults to current line). Open
+    viewport buffer in new tab.
+
+Commands local to the viewport buffer:
+
+                                                             *viewport-:write*
 :w[rite][!]
-    Install the changes in to the source buffer.  If the original buffer in
-    the range the view port was modified an error message is printed, unless
-    the bang is used.  If one of the view port marks was deleted, an error
-    message is printed and the writting process is abandoned.  The plugin also
-    takes care about the 'modified' option.  If the view port is written
-    without errors 'modififed' is reset.
 
-                                    *:Update*
+    Write viewport buffer contents into source buffer. Aborts and prints
+    an error message if original line range from which the viewport
+    was derived was modified in the interim. To override, append a
+    bang (:write!). Aborts and prints an error message if starting or
+    ending viewport mark in the source buffer cannot be found. Handles
+    'modified': if the viewport is written without errors 'modified'
+    is reset.
+
+                                                                     *:Update*
 :Update
-    Loads what is in the source file into the view port buffer.
 
-VARIABLES
+    Update viewport from source file.
 
-g:viewport_split_vertical
-    If set to 1, `ViewPortSplit` will split window vertically (default: 0)
+==============================================================================
+MAPPINGS                                                   *viewport-mappings*
 
-g:viewport_start_mark
-    Set letter to use as region starting position (default 't')
+vim-viewport does not create any keymaps by default. Instead, users
+should create custom mappings with <Plug> keys. For example, to open
+the visually selected region in a horizontal split, create a mapping for
+`(ViewPortSplit)`: >
 
-g:viewport_start_mark
-    Set letter to use as region ending position (default 'y')
+  vmap <leader>nr <Plug>ViewPortSplit
 
-LICENSE ~
-Vim license, :help license
+Available <Plug> keys include:
 
-vim: ft=help
+                                                             *(ViewPortSplit)*
+
+Opens line range in horizontal split.
+
+                                                            *(ViewPortVSplit)*
+
+Opens line range in vertical split.
+
+                                                            *(ViewPortTabNew)*
+
+Opens line range in new tab.
+
+==============================================================================
+SETTINGS                                                   *viewport-settings*
+
+                                                     *'g:viewport_start_mark'*
+
+Configure mark used to denote start of narrowed region (defaults to t):
+>
+  let g:viewport_start_mark = 't'
+<
+
+                                                       *'g:viewport_end_mark'*
+
+Configure mark used to denote end of narrowed region (defaults to y):
+>
+  let g:viewport_end_mark = 'y'
+<
+
+==============================================================================
+CREDITS                                                     *viewport-credits*
+
+- Jakub Łukasiewicz
+  * Jorengarenar/ViewPort
+- Marcin Szamotulski
+  * vim-scripts/ViewPort
+
+
+ vim: ft=help tw=78 et ts=2 sw=2 sts=2 norl
