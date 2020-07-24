@@ -145,7 +145,6 @@ function! ViewPort(cmd) abort range
   endif
 
   setlocal modifiable
-  let &l:statusline = ''
   %d_
   let b:viewport_address = [bufnr, s_mark, e_mark]
   call append(1, lines)
