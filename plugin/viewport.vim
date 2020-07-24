@@ -91,7 +91,7 @@ function! s:Write() abort
   let ma = &l:modifiable
   if (test) && (ma)
     execute "silent! " . s_line . "," . e_line . "delete _"
-    call append(s_line-1, lines)
+    call append(s_line - 1, lines)
     call setpos(address[1], [0, s_line, 0, 0])
     call setpos(address[2], [0, s_line + len(lines) - 1, 0, 0])
   elseif !(ma)
@@ -148,7 +148,7 @@ function! ViewPort(cmd) abort range
   let &l:statusline = ''
   %d_
   let b:viewport_address = [bufnr, s_mark, e_mark]
-  call append(1,lines)
+  call append(1, lines)
   0d_
   " reset undo
   let ul = &undolevels
