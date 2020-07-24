@@ -120,7 +120,7 @@ endfunction
 " autocmd
 augroup partwritecmd
   autocmd!
-  autocmd BufWriteCmd viewport://* :call <SID>Write()
+  autocmd BufWriteCmd viewport://* :silent call <SID>Write()
 augroup END
 
 " public interface
@@ -145,14 +145,14 @@ function! ViewPort(cmd) abort range
   endif
 
   setlocal modifiable
-  %d_
+  silent execute "normal %d_"
   let b:viewport_address = [bufnr, s_mark, e_mark]
-  call append(1, lines)
-  0d_
+  silent call append(1, lines)
+  silent execute "normal 0d_"
   " reset undo
   let ul = &undolevels
   set undolevels=-1
-  execute "normal mza \<BS>\<ESC>`z"
+  silent execute "normal mza \<BS>\<ESC>`z"
   let &undolevels=ul
   unlet ul
   set nomodified
