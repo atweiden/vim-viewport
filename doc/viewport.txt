@@ -76,6 +76,12 @@ COMMANDS                                                   *viewport-commands*
     Make viewport from lines in [range] (defaults to current line). Open
     new viewport buffer with [cmd] command.
 
+                                                               *:ViewPortEdit*
+:[range]ViewPortEdit
+
+    Make viewport from lines in [range] (defaults to current line). Open
+    viewport in new buffer.
+
                                                               *:ViewPortSplit*
 :[range]ViewPortSplit
 
@@ -123,6 +129,10 @@ the visually selected region in a horizontal split, create a mapping for
   vmap <leader>nr <Plug>ViewPortSplit
 
 Available <Plug> keys include:
+
+                                                              *(ViewPortEdit)*
+
+Opens line range in new buffer.
 
                                                              *(ViewPortSplit)*
 

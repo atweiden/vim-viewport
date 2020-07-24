@@ -164,10 +164,12 @@ function! ViewPort(cmd) abort range
 endf
 
 command! -range -nargs=* ViewPort :<line1>,<line2>call ViewPort(<f-args>)
+command! -range -nargs=* ViewPortEdit :<line1>,<line2>call ViewPort("edit")
 command! -range -nargs=* ViewPortSplit :<line1>,<line2>call ViewPort("split")
 command! -range -nargs=* ViewPortVSplit :<line1>,<line2>call ViewPort("vsplit")
 command! -range -nargs=* ViewPortTabNew :<line1>,<line2>call ViewPort("tabnew")
 
+vnoremap <Plug>ViewPortEdit :ViewPortEdit<CR>
 vnoremap <Plug>ViewPortSplit :ViewPortSplit<CR>
 vnoremap <Plug>ViewPortVSplit :ViewPortVSplit<CR>
 vnoremap <Plug>ViewPortTabNew :ViewPortTabNew<CR>

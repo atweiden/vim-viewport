@@ -15,6 +15,9 @@ vmap <leader>nr <Plug>ViewPortSplit
 " open visually selected region in vertical split
 vmap <leader>nr <Plug>ViewPortVSplit
 
+" open visually selected region in new buffer
+vmap <leader>nr <Plug>ViewPortEdit
+
 " open visually selected region in new tab
 vmap <leader>nr <Plug>ViewPortTabNew
 ```
