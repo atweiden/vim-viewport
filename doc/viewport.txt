@@ -20,20 +20,21 @@ INTRO                                                         *viewport-intro*
 
 Narrow region for Vim.
 
-Makes a viewport on range of lines. Copies range of lines to new
-buffer. Sets two marks in the source buffer, one marks the starting
-position and the other the ending position. Writes modified viewport
-buffer contents back into the source file with the vim |:write|
-command. If source file was changed (in line range from which viewport
-was derived), an error message is printed: use :write! to override this.
+Creates modifiable buffer from selected region in source buffer. Copies
+range of lines from source buffer to new buffer. Sets two marks in source
+buffer, one marking the start position and the other the end position of
+the range of lines. Writes modified viewport buffer contents back into
+source file with |:write|. If source file was changed (in region from
+which viewport was derived), prints an error message. Use :write! to
+override this.
 
-Source file can be modified outside of viewport, but be careful not to
-delete the starting or ending line of the viewport, as this will remove
+Source file can be modified outside of viewport, but be careful not
+to delete the viewport's starting or ending line, as this will remove
 viewport's marks. Viewport's marks can be moved to new positions and
 the viewport updated.
 
-vim-viewport disables `t` and `y` as marks by default. You can use other
-letters with |g:viewport_start_mark| and |g:viewport_end_mark|.
+vim-viewport reserves `t` and `y` marks by default. Use other letters
+with |g:viewport_start_mark| and |g:viewport_end_mark|.
 
 ==============================================================================
 INSTALL                                                     *viewport-install*
