@@ -153,7 +153,7 @@ function! ViewPort(cmd) abort range
   " reset undo
   let ul = &undolevels
   set undolevels=-1
-  execute "normal a \<BS>\<ESC>"
+  execute "normal mza \<BS>\<ESC>`z"
   let &undolevels=ul
   unlet ul
   set nomodified
