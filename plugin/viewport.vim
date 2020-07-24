@@ -139,9 +139,9 @@ function! ViewPort(cmd) abort range
   let ft = &filetype
 
   if !empty(ft)
-    silent execute a:cmd . ' +setlocal\ filetype=' . ft . '\ buftype=acwrite viewport://' . fnameescape(expand('%:p') . 'ʹ')
+    silent execute a:cmd . ' +setlocal\ filetype=' . ft . '\ buftype=acwrite viewport://' . fnameescape(expand('%') . 'ʹ')
   else
-    silent execute a:cmd . ' +setlocal\ buftype=acwrite viewport://' . fnameescape(expand('%:p') . 'ʹ')
+    silent execute a:cmd . ' +setlocal\ buftype=acwrite viewport://' . fnameescape(expand('%') . 'ʹ')
   endif
 
   setlocal modifiable
