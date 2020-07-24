@@ -52,7 +52,7 @@ function! s:Read() abort
   call winrestview(s_view)
   let b:viewport_lines = lines
   setlocal nomodified
-endf
+endfunction
 
 function! s:Write() abort
   silent preserve
@@ -115,7 +115,7 @@ function! s:Write() abort
     setlocal nomodified
     let b:viewport_lines = lines
   endif
-endf
+endfunction
 
 " autocmd
 augroup partwritecmd
@@ -160,7 +160,7 @@ function! ViewPort(cmd) abort range
   command! -buffer Update :call <SID>Read()
 
   let b:viewport_lines = lines
-endf
+endfunction
 
 command! -range -nargs=* ViewPort :<line1>,<line2>call ViewPort(<f-args>)
 command! -range -nargs=* ViewPortEdit :<line1>,<line2>call ViewPort("edit")
