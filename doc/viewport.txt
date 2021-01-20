@@ -73,32 +73,32 @@ Standard installation:
 ==============================================================================
 COMMANDS                                                   *viewport-commands*
 
-                                                                   *:ViewPort*
-:[range]ViewPort [cmd]
+                                                                   *:Viewport*
+:[range]Viewport [cmd]
 
     Make viewport from lines in [range] (defaults to current line). Open
     new viewport buffer with [cmd] command.
 
-                                                               *:ViewPortEdit*
-:[range]ViewPortEdit
+                                                               *:ViewportEdit*
+:[range]ViewportEdit
 
     Make viewport from lines in [range] (defaults to current line). Open
     viewport in new buffer.
 
-                                                              *:ViewPortSplit*
-:[range]ViewPortSplit
+                                                              *:ViewportSplit*
+:[range]ViewportSplit
 
     Make viewport from lines in [range] (defaults to current line). Open
     viewport buffer in new horizontal split.
 
-                                                             *:ViewPortVSplit*
-:[range]ViewPortVSplit
+                                                             *:ViewportVSplit*
+:[range]ViewportVSplit
 
     Make viewport from lines in [range] (defaults to current line). Open
     viewport buffer in new vertical split.
 
-                                                             *:ViewPortTabNew*
-:[range]ViewPortTabNew
+                                                             *:ViewportTabNew*
+:[range]ViewportTabNew
 
     Make viewport from lines in [range] (defaults to current line). Open
     viewport buffer in new tab.
@@ -127,25 +127,25 @@ MAPPINGS                                                   *viewport-mappings*
 vim-viewport does not create any keymaps by default. Instead, users
 should create custom mappings with <Plug> keys. For example, to open
 the visually selected region in a horizontal split, create a mapping for
-`(ViewPortSplit)`: >
+`(ViewportSplit)`: >
 
-  vmap <leader>nr <Plug>ViewPortSplit
+  vmap <leader>nr <Plug>ViewportSplit
 
 Available <Plug> keys include:
 
-                                                              *(ViewPortEdit)*
+                                                              *(ViewportEdit)*
 
 Opens line range in new buffer.
 
-                                                             *(ViewPortSplit)*
+                                                             *(ViewportSplit)*
 
 Opens line range in horizontal split.
 
-                                                            *(ViewPortVSplit)*
+                                                            *(ViewportVSplit)*
 
 Opens line range in vertical split.
 
-                                                            *(ViewPortTabNew)*
+                                                            *(ViewportTabNew)*
 
 Opens line range in new tab.
 

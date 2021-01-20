@@ -10,16 +10,16 @@ vim-viewport does not create any keymaps by default.
 
 ```vim
 " open visually selected region in horizontal split
-vmap <leader>nr <Plug>ViewPortSplit
+vmap <leader>nr <Plug>ViewportSplit
 
 " open visually selected region in vertical split
-vmap <leader>nr <Plug>ViewPortVSplit
+vmap <leader>nr <Plug>ViewportVSplit
 
 " open visually selected region in new buffer
-vmap <leader>nr <Plug>ViewPortEdit
+vmap <leader>nr <Plug>ViewportEdit
 
 " open visually selected region in new tab
-vmap <leader>nr <Plug>ViewPortTabNew
+vmap <leader>nr <Plug>ViewportTabNew
 ```
 
 vim-viewport reserves two Vim marks for its own usage: one for the

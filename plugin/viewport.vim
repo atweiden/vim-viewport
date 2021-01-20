@@ -124,7 +124,7 @@ augroup partwritecmd
 augroup END
 
 " public interface
-function! ViewPort(cmd) abort range
+function! Viewport(cmd) abort range
   let s_mark = "'" . g:viewport_start_mark
   let e_mark = "'" . g:viewport_end_mark
 
@@ -162,16 +162,16 @@ function! ViewPort(cmd) abort range
   let b:viewport_lines = lines
 endfunction
 
-command! -range -nargs=* ViewPort :<line1>,<line2>call ViewPort(<f-args>)
-command! -range -nargs=* ViewPortEdit :<line1>,<line2>call ViewPort("edit")
-command! -range -nargs=* ViewPortSplit :<line1>,<line2>call ViewPort("split")
-command! -range -nargs=* ViewPortVSplit :<line1>,<line2>call ViewPort("vsplit")
-command! -range -nargs=* ViewPortTabNew :<line1>,<line2>call ViewPort("tabnew")
+command! -range -nargs=* Viewport :<line1>,<line2>call Viewport(<f-args>)
+command! -range -nargs=* ViewportEdit :<line1>,<line2>call Viewport("edit")
+command! -range -nargs=* ViewportSplit :<line1>,<line2>call Viewport("split")
+command! -range -nargs=* ViewportVSplit :<line1>,<line2>call Viewport("vsplit")
+command! -range -nargs=* ViewportTabNew :<line1>,<line2>call Viewport("tabnew")
 
-vnoremap <Plug>ViewPortEdit :ViewPortEdit<CR>
-vnoremap <Plug>ViewPortSplit :ViewPortSplit<CR>
-vnoremap <Plug>ViewPortVSplit :ViewPortVSplit<CR>
-vnoremap <Plug>ViewPortTabNew :ViewPortTabNew<CR>
+vnoremap <Plug>ViewportEdit :ViewportEdit<CR>
+vnoremap <Plug>ViewportSplit :ViewportSplit<CR>
+vnoremap <Plug>ViewportVSplit :ViewportVSplit<CR>
+vnoremap <Plug>ViewportTabNew :ViewportTabNew<CR>
 
 let g:loaded_viewport = 1
 
